@@ -4,9 +4,11 @@ import pandas_ta as ta
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-# Page setup - Sirf TUSHARA trading dikhega
+# Page setup
 st.set_page_config(page_title="TUSHARA trading", layout="wide")
-st.markdown("<h1 style='text-align: center; color: white;'>TUSHARA trading</h1>", unsafe_allow_stdio=True)
+
+# Error fix karne ke liye title ka naya tareeka
+st.header("TUSHARA trading")
 
 # Sidebar settings
 st.sidebar.header("TUSHARA Settings")
@@ -34,7 +36,7 @@ try:
         fig.add_hline(y=70, line_dash="dash", line_color="red", row=2, col=1)
         fig.add_hline(y=30, line_dash="dash", line_color="green", row=2, col=1)
 
-        # Pattern Markers (Yellow dots on chart)
+        # Pattern Markers
         pattern_cols = [col for col in df.columns if col.startswith('CDL_')]
         for p_col in pattern_cols:
             hits = df[df[p_col] != 0]
@@ -48,6 +50,6 @@ try:
         
         st.write("✅ Owner: SUJAL MEMAWAT")
     else:
-        st.error("Data nahi mila. Symbol sahi dalo (jaise RELIANCE.NS)")
+        st.error("Data nahi mila. Symbol sahi dalo (e.g. RELIANCE.NS)")
 except Exception as e:
     st.error(f"System Error: {e}")
